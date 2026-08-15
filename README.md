@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- project structure -->
 
-## Getting Started
+Folder 1 -conmponents
+- contains loading UIs, not found routes ...
 
-First, run the development server:
+Folder 2 - Dashboard
+- has layout.jsx to wrap everything inside the Dashboard folder
+- has a page.jsx file for sidebar, wrapper header, footer...
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+    sub-folder 1 - summary
+        - contains cards of what the app contains
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    sub-folder 2 - Batches
+        - contains data on batches fetched from Supabase
+        - contains form component file
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+    Sub-folder 3 - Sales
+        - contains data on sales fetched from supabase
+        - contains a form componenet file
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    Sub-folder 4 - Expenses
+        - contains spending data and charts...
 
-## Learn More
+Folder 3 - API
+- contains API endpoints like OpenAI...
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+layout.jsx global file- will containt the clerk providers
