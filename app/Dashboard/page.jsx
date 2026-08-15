@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import logo from '../../public/profile.jpg'
-import Batches from './Batches/page'
+import BatchPage from './Batches/batches'
 import { useState } from 'react'
 
 export default function DashboardHome() {
@@ -16,7 +16,7 @@ export default function DashboardHome() {
     return (
         <>
         {/* outer layer */}
-        <div className='flex bg-black w-dvw h-dvh mx-auto gap-7 p-10 rounded-3xl'>
+        <div className='flex bg-black w-dvw h-dvh mx-auto gap-7 p-10'>
 
         {/* inner layer */}
             <div className='p-5 text-amber-50 mr-15'>
@@ -44,13 +44,13 @@ export default function DashboardHome() {
             
             </div>
 
-            <div className='bg-amber-50 w-full h-full rounded-4xl overflow-auto scrollbar-none flex flex-wrap gap-7 py-5
+            <div className='bg-amber-50 w-full h-full rounded-4xl overflow-auto scrollbar-none flex flex-wrap py-5 gap-5
             box-shadow:rgb(255_255_255_/_56%)_0px_22px_70px_4px'>
                 {/* static container */}
-                {batchDisplay && <Batches />}
+                {batchDisplay && <BatchPage />}
 
             </div>
-                <div className='w-1/4 bg-amber-200 rounded-3xl'>
+                <div className='w-1/3 bg-amber-200 rounded-3xl'>
 
                 </div>
         </div>
