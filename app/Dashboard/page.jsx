@@ -50,7 +50,7 @@ export default function DashboardHome() {
                 {batchDisplay && <BatchPage />}
 
             </div>
-                <div className='w-1/3 bg-amber-200 rounded-3xl'>
+                <div className='w-1/3 bg-amber-100 rounded-3xl'>
 
                 </div>
         </div>
