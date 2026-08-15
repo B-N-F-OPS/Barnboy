@@ -1,5 +1,7 @@
 <!-- project structure -->
 
+private notes
+
 Folder 1 -conmponents
 - contains loading UIs, not found routes ...
 
