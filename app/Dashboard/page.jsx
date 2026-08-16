@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import logo from '../../public/profile.jpg'
-import BatchPage from './Batches/batches'
-import { useState } from 'react'
+import BatchPage  from './Batches/page'
+import { Suspense, useState } from 'react'
 
 export default function DashboardHome() {
     const [batchDisplay, setBatchDisplay] = useState(false);
@@ -22,6 +22,7 @@ export default function DashboardHome() {
             <div className='p-5 text-amber-50 mr-15'>
 
                     <Image
+                        loading="eager"
                         className="border-0 rounded-2xl ml-8"
                         alt="profile"
                         src={logo}
@@ -47,7 +48,9 @@ export default function DashboardHome() {
             <div className='bg-amber-50 w-full h-full rounded-4xl overflow-auto scrollbar-none flex flex-wrap py-5 gap-5
             box-shadow:rgb(255_255_255_/_56%)_0px_22px_70px_4px'>
                 {/* static container */}
-                {batchDisplay && <BatchPage />}
+                <Suspense>
+                    {batchDisplay && <BatchPage fallback="Loading..." />}
+                </Suspense>
 
             </div>
                 <div className='w-1/3 bg-amber-100 rounded-3xl'>

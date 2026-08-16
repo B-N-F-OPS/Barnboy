@@ -1,16 +1,23 @@
 //public route
+'use client'
 
 import { Button } from "../Components/button"
-import Batches from "./batches"
+import{ GetBatchRecords } from "./batches"
+import { useEffect } from "react"
+
 
 export default function BatchPage() {
-    return (
+
+    return(
         <>
-            <div className="bg-red-400 p-20">
-                <Button variant="outline">ADD BATCH</Button>
-            </div>
-            <Batches />
+            <Button variant="outline" className="bg-amber-500 text-white hover:bg-amber-600 ml-auto mr-10 mt-5">
+                Add Batch
+            </Button>
+            {useEffect(()=> {
+                < GetBatchRecords />
+            }, [])}
+
+
         </>
     )
-    
 }
