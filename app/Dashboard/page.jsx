@@ -6,12 +6,14 @@ import BatchPage  from './Batches/page'
 import { Suspense, useState } from 'react'
 
 export default function DashboardHome() {
+    
     const [batchDisplay, setBatchDisplay] = useState(false);
 
     function handleBatches() {
         console.log('clicked')
         setBatchDisplay(true)
     }
+
 
     return (
         <>
@@ -48,9 +50,9 @@ export default function DashboardHome() {
             <div className='bg-amber-50 w-full h-full rounded-4xl overflow-auto scrollbar-none flex flex-wrap py-5 gap-5
             box-shadow:rgb(255_255_255_/_56%)_0px_22px_70px_4px'>
                 {/* static container */}
-                <Suspense>
-                    {batchDisplay && <BatchPage fallback="Loading..." />}
-                </Suspense>
+                {/* <Suspense> */}
+                    {batchDisplay && <BatchPage fallback="Loading batch records..." />}
+                {/* </Suspense> */}
 
             </div>
                 <div className='w-1/3 bg-amber-100 rounded-3xl'>
