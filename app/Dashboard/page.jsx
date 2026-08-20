@@ -4,14 +4,31 @@ import Image from 'next/image'
 import logo from '../../public/profile.jpg'
 import BatchPage  from './Batches/page'
 import { Suspense, useState } from 'react'
+import Summary from './Summary/page'
+import Expenses from './Expenses/page'
 
 export default function DashboardHome() {
     
-    const [batchDisplay, setBatchDisplay] = useState(false);
+    const [batchDisplay, setBatchDisplay] = useState(true);
+    const [summaryDisplay, setSummaryDisplay] = useState(false);
+    const [expensesDisplay, setExpensesDisplay] = useState(false)
 
     function handleBatches() {
-        console.log('clicked')
         setBatchDisplay(true)
+        setSummaryDisplay(false)
+        setExpensesDisplay(false)
+    }
+
+    function handleSummary() {
+        setSummaryDisplay(true)
+        setBatchDisplay(false)
+        setExpensesDisplay(false)
+    }
+
+    function handleExpenses() {
+        setExpensesDisplay(true)
+        setBatchDisplay(false)
+        setSummaryDisplay(false)
     }
 
 
@@ -35,10 +52,10 @@ export default function DashboardHome() {
                     <h2 className='opacity-90 ml-8'>brianKuria@email.com</h2>
 
                 <ul className='text-4xl mt-25 opacity-55 ml-8 cursor-pointer bold'>
-                    <li className='mb-9'>Summary</li>
+                    <li className='mb-9' onClick={handleSummary}>Summary</li>
                     <li className='mb-9 ' onClick={handleBatches}>Batches</li>
                     <li className='mb-9 '>Sales</li>
-                    <li className="">Expenses</li>
+                    <li className="" onClick={handleExpenses}>Expenses</li>
                     <li className='border-0 bg-amber-950 absolute px-7 py-5 bottom-15 text-xl rounded-3xl'>
                         <p>Accounts</p>
                         <p>settings</p>
@@ -50,11 +67,14 @@ export default function DashboardHome() {
             <div className='bg-amber-50 w-full h-full rounded-4xl overflow-auto scrollbar-none flex flex-wrap py-5 gap-5
             box-shadow:rgb(255_255_255_/_56%)_0px_22px_70px_4px'>
                 {/* static container */}
-                {/* <Suspense> */}
+                <Suspense>
                     {batchDisplay && <BatchPage fallback="Loading batch records..." />}
-                {/* </Suspense> */}
+                    {summaryDisplay && <Summary fallback="Loading summary records..."/>}
+                    {expensesDisplay && <Expenses fallback="Loading Expenses records..."/>}
+                </Suspense>
 
             </div>
+                {/* AI chatbot section */}
                 <div className='w-1/3 bg-amber-100 rounded-3xl'>
 
                 </div>

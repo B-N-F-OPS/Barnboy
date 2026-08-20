@@ -1,4 +1,6 @@
 //public route
+'use client'
+
 import { Button } from "../Components/button"
 import{ dataBatch } from "./batches"
 import { useState } from "react"
@@ -42,6 +44,8 @@ export default function BatchPage() {
     }
 
     function handleEdit() {
+        setShowForm(true)
+        
 
     }
 

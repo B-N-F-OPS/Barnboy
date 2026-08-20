@@ -1,11 +1,13 @@
 BATCH SECTION
 - fix button not showing - DONE
 - cache data for fast building -
-- return data from supabase on "Batches" module Clicking Done
+- return data from supabase on "Batches" module Clicking - Done
 - send data to supabase by form submission - Done
-- update and delete entries in supabase
+- delete entries in supabase - DONE
+- update entries in supabase
 - managing session / persistence. when user reloads it remains in same page
 - enable RLS policy
+- date formating
 
 SALES SECTION
 - style using dummy data
