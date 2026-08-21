@@ -5,8 +5,8 @@ const supabase_key= process.env.NEXT_PUBLIC_PUBLISHABLE_KEY
 const supabase_url= process.env.NEXT_PUBLIC_SUPABASE_URL
 export const supabase = createClient( supabase_url, supabase_key)
 
-
-export async function getBatchRecords() {
+// getting batches records
+async function getBatchRecords() {
     
     const { data, error } = await supabase
         .from('hatchery')
@@ -16,4 +16,16 @@ export async function getBatchRecords() {
     return data
 }
 
-export const dataBatch = await getBatchRecords()
+export const dataBatch = await getBatchRecords();
+
+// getting sales records
+async function getSalesRecords() {
+    const { data, error } = await supabase
+        .from('sales')
+        .select()
+    
+        console.log(error)
+    return data
+}
+
+export const dataSales = await getSalesRecords();

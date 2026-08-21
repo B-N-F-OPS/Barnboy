@@ -2,31 +2,43 @@
 
 import Image from 'next/image'
 import logo from '../../public/profile.jpg'
-import BatchPage  from './Batches/page'
-import { Suspense, useState } from 'react'
-import Summary from './Summary/page'
-import Expenses from './Expenses/page'
+import BatchPage from './modules/batches'
+import { Suspense, use, useState } from 'react'
+import Summary from './modules/summary'
+import Expenses from './modules/expenses'
+import Sales from './modules/sales'
 
 export default function DashboardHome() {
     
     const [batchDisplay, setBatchDisplay] = useState(true);
     const [summaryDisplay, setSummaryDisplay] = useState(false);
-    const [expensesDisplay, setExpensesDisplay] = useState(false)
+    const [expensesDisplay, setExpensesDisplay] = useState(false);
+    const [salesDisplay, setSalesDisplay] = useState(false)
 
     function handleBatches() {
         setBatchDisplay(true)
         setSummaryDisplay(false)
         setExpensesDisplay(false)
+        setSalesDisplay(false)
     }
 
     function handleSummary() {
         setSummaryDisplay(true)
         setBatchDisplay(false)
         setExpensesDisplay(false)
+        setSalesDisplay(false)
     }
 
     function handleExpenses() {
         setExpensesDisplay(true)
+        setBatchDisplay(false)
+        setSummaryDisplay(false)
+        setSalesDisplay(false)
+    }
+
+    function handleSales() {
+        setSalesDisplay(true)
+        setExpensesDisplay(false)
         setBatchDisplay(false)
         setSummaryDisplay(false)
     }
@@ -54,7 +66,7 @@ export default function DashboardHome() {
                 <ul className='text-4xl mt-25 opacity-55 ml-8 cursor-pointer bold'>
                     <li className='mb-9' onClick={handleSummary}>Summary</li>
                     <li className='mb-9 ' onClick={handleBatches}>Batches</li>
-                    <li className='mb-9 '>Sales</li>
+                    <li className='mb-9 ' onClick={handleSales}>Sales</li>
                     <li className="" onClick={handleExpenses}>Expenses</li>
                     <li className='border-0 bg-amber-950 absolute px-7 py-5 bottom-15 text-xl rounded-3xl'>
                         <p>Accounts</p>
@@ -71,6 +83,7 @@ export default function DashboardHome() {
                     {batchDisplay && <BatchPage fallback="Loading batch records..." />}
                     {summaryDisplay && <Summary fallback="Loading summary records..."/>}
                     {expensesDisplay && <Expenses fallback="Loading Expenses records..."/>}
+                    {salesDisplay && <Sales fallback="Loading Sales records..." />}
                 </Suspense>
 
             </div>

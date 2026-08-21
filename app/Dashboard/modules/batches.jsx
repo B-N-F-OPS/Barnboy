@@ -1,14 +1,14 @@
 //public route
 'use client'
 
-import { Button } from "../Components/button"
-import{ dataBatch } from "./batches"
+import { Button } from "../Components/UI/button"
+import{ dataBatch } from "../Components/supabase/supabase"
 import { useState } from "react"
 import edit from "../../../public/edit.png"
 import trash from "../../../public/trash.png"
 import Image from "next/image" 
 import Form from "next/form"
-import { supabase } from "./batches"
+import { supabase } from "../Components/supabase/supabase"
 
 
 export default function BatchPage() {
@@ -64,7 +64,7 @@ export default function BatchPage() {
                 <h1 className="text-4xl font-bold ml-4">Batches</h1>
                 <Button variant="outline" onClick={formClick}
                     className="bg-amber-500 text-white hover:bg-amber-600 ml-auto mr-10 mt-5">
-                    Add Batch
+                    Add New Batch
                 </Button>
             </div>
 
