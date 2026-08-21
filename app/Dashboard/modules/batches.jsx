@@ -9,13 +9,14 @@ import trash from "../../../public/trash.png"
 import Image from "next/image" 
 import Form from "next/form"
 import { supabase } from "../Components/supabase/supabase"
+import AlertUI from "../Components/UI/alert"
 
 
 export default function BatchPage() {
     const [showForm, setShowForm] = useState(false)
+    const [showAlert, SetShowAlert] = useState(false)
 
     function formClick() {
-        console.log("form clicked")
         setShowForm(prev => !prev)
     }
 
@@ -45,8 +46,6 @@ export default function BatchPage() {
 
     function handleEdit() {
         setShowForm(true)
-        
-
     }
 
     const handleDelete = async (id) => {
@@ -55,7 +54,12 @@ export default function BatchPage() {
             .delete()
             .eq('id', id)
             console.log(error)
-            alert("Batch has been Deleted successfully")
+
+        if(!error) {
+            SetShowAlert(true)
+        }
+        
+        setTimeout( ()=> {SetShowAlert(false)}, 4000)
     }
 
     return(
@@ -148,7 +152,7 @@ export default function BatchPage() {
 
                 </Form>}
             {/* form to here */}
-
+            {showAlert && < AlertUI />}
         </>
     )
 }

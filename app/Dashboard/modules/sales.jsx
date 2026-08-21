@@ -9,10 +9,12 @@ import Image from "next/image"
 import Form from "next/form"
 import { useState } from "react"
 import { supabase } from "../Components/supabase/supabase"
+import AlertUI from "../Components/UI/alert"
 
 
 export default function Sales() {
     const [displayForm, setDisplayForm] = useState(false)
+    const [showAlert, SetShowAlert] = useState(false)
 
     function formClick() {
         setDisplayForm(prev=> !prev)
@@ -21,21 +23,19 @@ export default function Sales() {
     async function submitSalesEntries(formData) {
         setDisplayForm(false)
 
-        const chicksHatched = formData.get("chicksHatched")
-        const chicksSold = formData.get("chickSold")
-        const unsoldChicks = formData.get("unsoldChicks")
-        const totalRevenue = formData.get("totalRevenue")
-
+        const chicksHatched = Number(formData.get("chicksHatched"))
+        const chicksSold = Number(formData.get("chickSold"))
 
         const { error } = await supabase
             .from('sales')
             .insert([
                 {
-                    "chicks_hatched": Number(chicksHatched),
-                    "chicks_sold": Number(chicksSold),
-                    "unsold_chicks": Number(unsoldChicks),
-                    "total_revenue": Number(totalRevenue)
+                    "chicks_hatched": chicksHatched,
+                    "chicks_sold": chicksSold,
+                    "unsold_chicks": chicksHatched - chicksSold,
+                    "total_revenue": chicksSold * 100
                 }
+                
             ])
         
         console.log(error)
@@ -47,7 +47,12 @@ export default function Sales() {
             .delete()
             .eq('id', id)
             console.log(error)
-        alert("Sale record has been Deleted successfully")
+
+        if(!error) {
+            SetShowAlert(true)
+        }
+        
+        setTimeout( ()=> {SetShowAlert(false)}, 4000)
     }
 
 
@@ -73,8 +78,8 @@ export default function Sales() {
                                 <div className="shadow-xl/10 h-1/3 p-3 text-sm flex flex-col justify-evenly gap-2 truncate overflow-auto scrollbar-none rounded-1xl">
                                     <p>Chicks Hatched: {items.chicks_hatched}</p>
                                     <p>Chicks Sold: {items.chicks_sold}</p>
-                                    <p>Total Revenue: {items.total_revenue}</p>
                                     <p>Unsold Chicks: {items.unsold_chicks}</p>
+                                    <p>Total Revenue: {items.total_revenue}</p>
                                 </div>
                             </div>
 
@@ -83,10 +88,11 @@ export default function Sales() {
                                 <Button variant="outline" size="icon" >
                                     <Image src={edit} width={20} height={20} alt="edit"/>
                                 </Button>
-                                
+                             
                                 <Button variant="outline" size="icon" onClick={()=> handleDelete(items.id)}>
                                     <Image src={trash} width={20} height={20} alt="delete"/>
                                 </Button>
+
                             </div>
                             {/* Crud Btns end here */}
                         </div>
@@ -119,30 +125,14 @@ export default function Sales() {
                             name="chickSold"
                             />
 
-                    <label htmlFor="unsoldChicks" className="text-black">Unsold Chicks</label>
-                    <input
-                        className="bg-amber-50 p-3 rounded-2xl placeholder:italic text-l"
-                        required
-                        placeholder="e.g 50"
-                        type="number"
-                        name="unsoldChicks"
-                    />
-
-                    <label htmlFor="totalRevenue" className="text-black">Total Revenue</label>
-                    <input
-                        className="bg-amber-50 p-3 rounded-2xl placeholder:italic text-l"
-                        required
-                        placeholder="e.g 2500"
-                        type="number"
-                        name="totalRevenue"
-                    />
-
                     <Button variant="destructive" type="submit">
                         Submit
                     </Button>
 
                 </Form>}
             {/* form to here */}
+
+            {showAlert && < AlertUI />}
         </>
     )
 }

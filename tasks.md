@@ -1,21 +1,12 @@
-BATCH SECTION
-- fix button not showing - DONE
-- cache data for fast building -
-- return data from supabase on "Batches" module Clicking - Done
-- send data to supabase by form submission - Done
-- delete entries in supabase - DONE
-- update entries in supabase
+APP FIXES
 - managing session / persistence. when user reloads it remains in same page
-- enable RLS policy
 - date formating
 
+BATCH SECTION
+- update entries in supabase
+
 SALES SECTION
-- style using dummy data
-- hook Supabase to it
-- re-use form component if possible or build my own from scratch
-- send data to suabase via form submission
-- receive data from supabase
-- update and delete entries in supabase
+- update entries in supabase
 
 SUPABASE
 - enable RLS and create a policy
